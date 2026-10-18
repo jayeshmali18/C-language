@@ -1,0 +1,38 @@
+
+#include <stdio.h>
+
+void main()
+{
+    int mode;
+
+    printf("Robot Modes\n");
+    printf("1. Forward\n");
+    printf("2. Backward\n");
+    printf("3. Left\n");
+    printf("4. Right\n");
+
+    printf("Enter robot mode: ");
+    scanf("%d", &mode);
+
+    switch(mode)
+    {
+        case 1:
+            printf("Robot Moving Forward");
+            break;
+
+        case 2:
+            printf("Robot Moving Backward");
+            break;
+
+        case 3:
+            printf("Robot Turning Left");
+            break;
+
+        case 4:
+            printf("Robot Turning Right");
+            break;
+
+        default:
+            printf("Invalid Robot Mode");
+    }
+}
