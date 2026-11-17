@@ -1,0 +1,112 @@
+#include <stdio.h>
+#include <conio.h>
+#include <dos.h>
+
+void drawRobot(int x)
+{
+    textcolor(LIGHTCYAN);
+
+    gotoxy(x, 9);
+    cprintf("  ______ ");
+
+    gotoxy(x, 10);
+    cprintf(" | ROBOT |");
+
+    gotoxy(x, 11);
+    cprintf(" |______|");
+
+    textcolor(YELLOW);
+    gotoxy(x, 12);
+    cprintf(" O      O ");
+
+    textcolor(LIGHTGREEN);
+    gotoxy(x + 3, 13);
+    cprintf("v");
+}
+
+void eraseRobot(int x)
+{
+    int i;
+
+    for(i = 9; i <= 13; i++)
+    {
+        gotoxy(x, i);
+        cprintf("           ");
+    }
+}
+
+void main()
+{
+    int x, i;
+
+    clrscr();
+    textbackground(BLACK);
+    clrscr();
+
+    /* TITLE */
+    textcolor(YELLOW);
+    gotoxy(25, 2);
+    cprintf("SMART LINE FOLLOWER ROBOT");
+
+    /* START */
+    textcolor(LIGHTGREEN);
+    gotoxy(5, 6);
+    cprintf("START");
+
+    /* FINISH */
+    gotoxy(69, 6);
+    cprintf("FINISH");
+
+    /* ROAD BOUNDARIES */
+    textcolor(WHITE);
+
+    for(i = 8; i <= 19; i++)
+    {
+        gotoxy(5, i);
+        cprintf("|");
+
+        gotoxy(75, i);
+        cprintf("|");
+    }
+
+    /* ROAD CENTRE LINE */
+    textcolor(DARKGRAY);
+
+    for(i = 7; i <= 73; i += 4)
+    {
+        gotoxy(i, 16);
+        cprintf("-");
+    }
+
+    /* INITIAL STATUS */
+    textcolor(LIGHTCYAN);
+    gotoxy(20, 22);
+    cprintf("STATUS: SCANNING ROAD...");
+
+    delay(1500);
+
+    /* ROBOT MOVEMENT */
+    for(x = 8; x <= 65; x++)
+    {
+        eraseRobot(x - 1);
+
+        drawRobot(x);
+
+        textcolor(LIGHTGREEN);
+        gotoxy(20, 22);
+        cprintf("STATUS: FOLLOWING LINE...");
+
+        delay(120);
+    }
+
+    /* FINAL STATUS */
+    textcolor(YELLOW);
+    gotoxy(20, 22);
+    cprintf("STATUS: DESTINATION REACHED!");
+
+    textcolor(LIGHTGREEN);
+    gotoxy(29, 24);
+    cprintf("MISSION SUCCESS!");
+
+    getch();
+}
